@@ -1,4 +1,4 @@
-# SigAdapt
+# SigAdapt ✍️
 
 Code for the paper *Encoding Time Series Dynamics with Sliding-Window Signatures for Online Forecasting*.
 
@@ -18,7 +18,7 @@ sliding-window path signatures:
    Bernstein Online Aggregation.
 
 
-## Repository structure
+## Repository structure 🗂️
 
 ```
 configs/          dataset and experiment configurations
@@ -44,7 +44,7 @@ notebooks/        analysis of the results (tests, figures)
 
 
 
-## Reproducing the results
+## Reproducing the results 🚀
 
 Each experiment is defined by one configuration file and run with one command:
 
@@ -72,7 +72,7 @@ Results are written to `results/<dataset>/<model>/[<series>/]`:
 TiDE and Chronos-2 are run on a GPU. The other models run on a CPU.
 
 
-## Acknowledgements
+## Acknowledgements 🧩
 
 This code builds on the following:
 
