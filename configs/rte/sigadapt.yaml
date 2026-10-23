@@ -1,0 +1,30 @@
+# SigAdapt on RTE: configuration reported in the paper
+dataset: rte
+model: sigadapt
+scaling: standard                 # temperature and load standardised on 2018-2023
+
+signature:
+  depth: 6
+  window_days: [2, 7, 14, 28, 84, 168]   # one expert per window length
+  blocks:                                # order fixes the order of the features and of the state
+    - name: outlook                      # (time, temperature), window ending at the forecast time
+      channels: [Temperature]
+      anchor: target
+      drop_pure: [time]
+    - name: history                      # (time, temperature, load), window ending at the origin
+      channels: [Temperature, target]
+      anchor: origin
+      drop_pure: [time, Temperature]
+
+pointwise:
+  calendar: rte                   # see src/sigadapt/calendar.py
+
+ridge:
+  alphas: {logspace: [-4, 4, 19]}
+  unpenalised: [bridge]                 # rare effect: column multiplied by c_cal,
+  c_cal: 100.0                          
+
+kalman:
+  calendar: in_state              # calendar coefficients in the state (no drift)
+  skip_special_days: true         # no update on holidays, bridges, 24 Dec - 1 Jan
+  q_grid: [0.0, 1.0e-7, 1.0e-6, 1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0]

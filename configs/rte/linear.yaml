@@ -1,0 +1,16 @@
+# Linear baseline without signatures (ablation of SigAdapt)
+dataset: rte
+model: linear
+covariate_lags_days: [2, 7, 14, 28, 84, 168]   # same as the SigAdapt windows
+
+pointwise:
+  calendar: rte
+
+ridge:
+  alphas: {logspace: [-3, 3, 13]}
+  unpenalised: [bridge]
+  c_cal: 100.0
+
+kalman:
+  skip_special_days: true
+  q_grid: [0.0, 1.0e-7, 1.0e-6, 1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0]

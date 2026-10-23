@@ -1,0 +1,8 @@
+# Chronos-2, zero-shot, on RTE: configuration reported in the paper
+dataset: rte
+model: chronos2
+checkpoint: amazon/chronos-2
+rte_special_flags: true            # covariates: temperature + special-day flags only
+context_days: [2, 7, 14, 28, 84, 168]
+val_stride: 1
+chunk: 64                          # forecasts per call

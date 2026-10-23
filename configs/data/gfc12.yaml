@@ -1,0 +1,13 @@
+# GEFCom2012 load track (fev-bench), hourly, 11 zones
+name: gfc12
+file: data/gfc12_{series}.csv
+series: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
+end_per_series: {"10": "2008-01-01"}   # zone 10 is cut at this date, for every model
+target: load
+covariates: [temperature]
+freq: 1h
+slots_per_day: 24
+lead_time_days: 2
+splits:
+  val_start: "2006-07-01"          # train 2.5 y | validation 1 y | test ~1 y
+  test_start: "2007-07-01"

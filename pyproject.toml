@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sigadapt"
+version = "0.1.0"
+description = "Online linear models on sliding-window path signatures for forecasting with covariates"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "scipy",
+    "statsmodels",
+    "pyyaml",
+    # iisignature with float64 output for sigcombine (pull request #25, branch "doubles");
+    # the PyPI release and the main branch return float32
+    "iisignature @ git+https://github.com/bottler/iisignature.git@0c29eb6",
+    "viking_kalman",
+    # online aggregation: opera-python 
+    "opera @ git+https://github.com/Dralliag/opera-python.git@9f82033",
+]
+
+[project.optional-dependencies]
+gam = ["pygam"]
+deep = ["darts", "torch"]
+chronos = ["chronos-forecasting>=2.0", "torch"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

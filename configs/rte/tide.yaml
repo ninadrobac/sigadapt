@@ -1,0 +1,23 @@
+# TiDE (Darts) on RTE: configuration reported in the paper
+dataset: rte
+model: tide
+calendar: rte                     # calendar inputs (+ sin/cos time of day), all 7 day dummies
+lookback_days: [1, 2, 4, 7, 14, 28]   # chosen on validation
+seeds: [1, 42, 145, 150, 1000]    # weight initialisation and mini-batch order
+validation:
+  stride: 47                      # in steps: covers all times of day and weekdays evenly
+  points: last                    # score only the point one lead time ahead
+  refit_covariate_scaler: true    # final model: covariate scaler refitted on train + validation
+  pass_val_series: false
+lr: 1.0e-3
+model_params:
+  hidden_size: 256
+  num_encoder_layers: 2
+  num_decoder_layers: 2
+  temporal_width_future: 12
+  use_reversible_instance_norm: true
+  dropout: 0.1
+  batch_size: 256
+  n_epochs: 20
+trainer: {accelerator: gpu, devices: 1}
+predict_batch_size: 256

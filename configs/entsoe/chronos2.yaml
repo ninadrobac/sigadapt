@@ -1,0 +1,6 @@
+dataset: entsoe
+model: chronos2
+checkpoint: amazon/chronos-2
+context_days: [2, 7, 14, 28, 56, 84]
+val_stride: 1
+chunk: 256

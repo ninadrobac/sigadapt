@@ -1,0 +1,12 @@
+# ENTSO-E hourly load (fev-bench entsoe_1H), 6 countries
+name: entsoe
+file: data/entsoe_1H_{series}.csv
+series: ["AT", "BE", "DE", "HU", "LU", "NL"]
+target: load
+covariates: [temperature, rad_direct, rad_diffuse]
+freq: 1h
+slots_per_day: 24
+lead_time_days: 2
+splits:
+  val_start: "2018-01-01"
+  test_start: "2019-01-01"

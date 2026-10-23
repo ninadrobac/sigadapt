@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+.env
+
+# Data and results 
+!data/README.md
+results/*
+!results/.gitkeep
+figures/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

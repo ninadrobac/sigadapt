@@ -1,0 +1,12 @@
+# GEFCom2017 (ISO New England, fev-bench), hourly, 8 zones
+name: gfc17
+file: data/gfc17_{series}.csv
+series: ["CT", "ME", "NH", "RI", "VT", "SEMASS", "WCMASS", "NEMASSBOST"]
+target: load
+covariates: [temperature]
+freq: 1h
+slots_per_day: 24
+lead_time_days: 2
+splits:
+  val_start: "2017-01-01"
+  test_start: "2017-07-01"

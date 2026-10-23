@@ -1,0 +1,12 @@
+# EPF day-ahead electricity prices (fev-bench), hourly, 5 markets
+name: epf
+file: data/epf_{series}.csv
+series: ["fr", "de", "be", "np", "pjm"]
+target: target                     # price
+covariates: auto                   # the two exogenous columns of each file, in file order
+freq: 1h
+slots_per_day: 24
+lead_time_days: 1
+splits:                            # counted back from the last timestamp of each market
+  test_years: 2
+  val_years: 1

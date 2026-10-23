@@ -1,0 +1,23 @@
+# TiDE (Darts): settings of the original fev-bench scripts (one seed, validation stride 1)
+dataset: entsoe
+model: tide
+calendar: generic
+lookback_days: [2, 7, 14, 28, 56, 84]
+seeds: [141]
+validation:
+  stride: 1
+  points: last
+  refit_covariate_scaler: false
+  pass_val_series: false
+lr: 1.0e-3
+model_params:
+  hidden_size: 256
+  num_encoder_layers: 2
+  num_decoder_layers: 2
+  temporal_width_future: 12
+  use_reversible_instance_norm: true
+  dropout: 0.1
+  batch_size: 256
+  n_epochs: 20
+trainer: {accelerator: gpu, devices: 1}
+predict_batch_size: 256

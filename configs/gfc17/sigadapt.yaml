@@ -1,0 +1,27 @@
+dataset: gfc17
+model: sigadapt
+scaling: standard
+
+signature:
+  depth: 6
+  window_days: [2, 7, 14, 28, 56, 84]
+  blocks:
+    - name: outlook
+      channels: [temperature]
+      anchor: target
+      drop_pure: [time]
+    - name: history
+      channels: [temperature, target]
+      anchor: origin
+      drop_pure: [time, temperature]
+
+pointwise:
+  calendar: generic               # sin/cos of position in the year, day-of-week dummies
+
+ridge:
+  alphas: {logspace: [-4, 4, 19]}
+
+kalman:
+  calendar: residual              # calendar effect fixed; the filter runs on the residual
+  skip_special_days: false
+  q_grid: [0.0, 1.0e-7, 1.0e-6, 1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0]

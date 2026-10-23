@@ -1,0 +1,11 @@
+# GEFCom2014 load track (fev-bench), hourly, one series
+name: gfc14
+file: data/gfc14_load.csv
+target: load
+covariates: [temperature]
+freq: 1h
+slots_per_day: 24
+lead_time_days: 2
+splits:
+  val_start: "2014-01-01"
+  test_start: "2014-07-01"

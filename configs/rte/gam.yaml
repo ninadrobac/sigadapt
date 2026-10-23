@@ -1,0 +1,9 @@
+# GAM and GAMAdapt (GAM + Kalman filter)
+dataset: rte
+model: gam
+smoothing: [0.01, 0.05]           # exponential smoothing of temperature (two smoothed series)
+lams: {logspace: [-3, 3, 7]}      # GAM smoothing parameters, chosen by GCV
+c_cal: 100.0                      # bridge: smoothing parameter divided by c_cal^2
+
+kalman:                           # drift: intercept, temperature terms, past loads
+  q_grid: [0.0, 1.0e-7, 1.0e-6, 1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0]

@@ -1,0 +1,28 @@
+dataset: epf
+model: sigadapt
+scaling: invariant                # asinh of the median/MAD-normalised series (price spikes)
+
+signature:
+  window_days: [2, 7, 14, 28, 56, 84]
+  blocks:
+    - name: history                      # joint past path (time, price, cov1, cov2)
+      channels: [target, covariates]
+      anchor: origin
+      depth: 4
+      require_any: [target]              # keep only the words that contain the price
+    - name: outlook                      # (time, cov1, cov2), known in advance
+      channels: [covariates]
+      anchor: target
+      depth: 6
+      drop_pure: [time]
+
+pointwise:
+  calendar: generic
+
+ridge:
+  alphas: {logspace: [-4, 4, 19]}
+
+kalman:
+  calendar: residual
+  skip_special_days: false
+  q_grid: [0.0, 1.0e-7, 1.0e-6, 1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2, 1.0e-1, 1.0]

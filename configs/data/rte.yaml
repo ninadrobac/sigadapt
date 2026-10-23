@@ -1,0 +1,12 @@
+# RTE: French national load, half-hourly, 2018 - June 2026
+name: rte
+file: data/rte_2018_2026.csv
+target: Consumption
+covariates: [Temperature]          # realised temperature (perfect weather forecast)
+freq: 30min
+slots_per_day: 48
+slot_column: halfhour             
+lead_time_days: 2                  # every point is forecast 48 h ahead
+splits:
+  val_start: "2022-01-01"          # train 2018-2021 | validation 2022-2023 | test 2024 - June 2026
+  test_start: "2024-01-01"
